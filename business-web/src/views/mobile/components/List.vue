@@ -6,6 +6,7 @@
             </div>
             <div v-for="(item, index) in res" :key="index"  @click="readInfo(item)">
                 <img :src="item.picPath || './static/img/404.jpg'" alt="" @error="imgerrorfun(index)">
+                <img :src="'./static/img/icon-video.png'" alt="" class="icon-video" v-if="item.hasVideo == 1">
                 <div class="build-info">
                     <div class="BusinessName">{{item.BusinessName}}</div>
                     <div class="address">{{item.DicBuildName}} | {{item.DistrictZoneName}}</div>
@@ -67,10 +68,18 @@ export default {
             & > div {
                 padding: 24px 0 ;
                 border-bottom: 1px solid #e5e5e5;
+                position: relative;
                 img {
                     width: 120px;
                     height: 90px;
                     float: left
+                }
+                .icon-video{
+                    width: 32px;
+                    height: 32px;
+                    position: absolute;
+                    top: 78px;
+                    left: 82px;
                 }
                 .build-info{
                     margin-left: 130px;

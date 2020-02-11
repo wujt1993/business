@@ -4,10 +4,11 @@
             <div style="border-bottom:none;font-size:22px">
                 已为您找到<span style="color: #409EFF;margin:0 6px;">{{data.total[0].RowCount}}</span>栋写字楼
             </div>
-            <div v-for="(item, index) in res" :key="index">
+            <div v-for="(item, index) in res" :key="index"  @click="readInfo(item)" style="cursor: pointer">
                 <img :src="item.picPath || './static/img/404.jpg'" alt="" @error="imgerrorfun(index)">
+                <img :src="'./static/img/icon-video.png'" alt="" class="icon-video" v-if="item.hasVideo == 1">
                 <div class="build-info">
-                    <div class="BusinessName" @click="readInfo(item)">{{item.BusinessName}}</div>
+                    <div class="BusinessName">{{item.BusinessName}}</div>
                     <div class="address">{{item.DicBuildName}}　|　{{item.DistrictZoneName}}　|　{{item.MetroInfo}}</div>
                     <div>面积单价：{{item.PriceAreaUnit}} <span style="margin-left:6px;color:#777">元/m²•月</span></div>
                     <div>工位单价：{{item.PriceWorkingUnit}}<span style="margin-left:6px;color:#777">元/工位•月</span></div>
@@ -64,10 +65,19 @@ export default {
             & > div {
                 padding: 24px 0 ;
                 border-bottom: 1px solid #e5e5e5;
+                position: relative;
+                cursor: pointer;
                 img {
                     width: 200px;
                     height: 150;
                     float: left
+                }
+                .icon-video{
+                    width: 32px;
+                    height: 32px;
+                    position: absolute;
+                    top: 116px;
+                    left: 156px;
                 }
                 .build-info{
                     margin-left: 260px;
